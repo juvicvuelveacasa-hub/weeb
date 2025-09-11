@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Evento - Registro de Asistentes</title>
+  <link rel="stylesheet" href="Estilos/globals.css">
+  <link rel="stylesheet" href="Estilos/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <div class="header-content">
+        <div class="event-title">Vuelve a Casa</div>
+        <div class="subtitle">"Los brazos del Padre te esperan"</div>
+        <div class="bible-verse">San Lucas 15:18</div>
+        <h1>Registro de Asistentes</h1>
+        <p>Completa la información de los jóvenes que asistieron a Vuelve a Casa</p>
+      </div>
+    </header>
+
+    <form id="eventForm" class="form">
+      <!-- Información del Evento -->
+      <div class="form-section">
+        <h2>Información del Culto</h2>
+        
+        <div class="form-group">
+          <label for="zona">Zona</label>
+          <input type="text" id="zona" name="zona" required placeholder="Nombre de la zona">
+        </div>
+
+        <div class="form-group">
+          <label for="liderZona">Líder de Zona</label>
+          <input type="text" id="liderZona" name="liderZona" required placeholder="Nombre completo del líder de zona">
+        </div>
+
+        <div class="form-group">
+          <label for="totalSedes">¿Cuántas sedes tiene la zona?</label>
+          <input type="number" id="totalSedes" name="totalSedes" min="1" max="50" required placeholder="Ej: 5">
+        </div>
+
+        <div class="form-group">
+          <label for="sedesParticipantes">¿Cuántas sedes realizaron el servicio Vuelve a Casa?</label>
+          <input type="number" id="sedesParticipantes" name="sedesParticipantes" min="1" max="50" required placeholder="Ej: 3">
+        </div>
+
+        <div class="form-group">
+          <label for="tipoEvento">¿En qué evento lo hicieron?</label>
+          <select id="tipoEvento" name="tipoEvento" required>
+            <option value="">Seleccione una opción</option>
+            <option value="culto_normal">Culto Normal</option>
+            <option value="confraternidad_zona">Confraternidad de Zona</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cantidadJovenes">Cantidad de Jóvenes que Asistieron</label>
+          <input type="number" id="cantidadJovenes" name="cantidadJovenes" min="1" max="1000" required placeholder="Ej: 120">
+          <small>Ingrese el número total de jóvenes que asistieron al evento</small>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="form-actions">
+        <button type="button" id="previewBtn" class="btn-secondary">Vista Previa</button>
+        <button type="submit" class="btn-primary">Enviar Registro</button>
+      </div>
+    </form>
+
+    <!-- Modal de Vista Previa -->
+    <div id="previewModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Vista Previa del Registro</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body" id="previewContent"></div>
+        <div class="modal-footer">
+          <button type="button" class="btn-secondary" id="closePreview">Cerrar</button>
+          <button type="button" class="btn-primary" id="confirmSubmit">Confirmar y Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmación -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>¡Registro Exitoso!</h3>
+        </div>
+        <div class="modal-body">
+          <p>La información del evento ha sido registrada correctamente.</p>
+          <p>Gracias por completar el formulario.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-primary" id="newForm">Nuevo Registro</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="Java/script.js"></script>
+</body>
+</html>
