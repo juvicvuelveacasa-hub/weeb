@@ -11,21 +11,17 @@ class EventFormManager {
   }
 
   initializeEventListeners() {
-    // Interceptar el envío del formulario
     this.form.addEventListener('submit', (e) => this.handleSubmit(e));
     
-    // Botón de Vista Previa
     document.getElementById('previewBtn').addEventListener('click', () => {
         if(this.validarFormulario()) this.mostrarVistaPrevia();
     });
     
-    // Controles de los Modales
     document.querySelector('.close').addEventListener('click', () => this.cerrarModal('previewModal'));
     document.getElementById('closePreview').addEventListener('click', () => this.cerrarModal('previewModal'));
     document.getElementById('confirmSubmit').addEventListener('click', () => this.confirmarEnvio());
     document.getElementById('newForm').addEventListener('click', () => location.reload());
 
-    // Cerrar modal al hacer clic fuera del contenido
     window.addEventListener('click', (e) => {
       if (e.target.classList.contains('modal')) this.cerrarModal(e.target.id);
     });
@@ -63,10 +59,8 @@ class EventFormManager {
         totalSedes: formData.get('totalSedes'),
         sedesParticipantes: formData.get('sedesParticipantes'),
         tipoEvento: tipoEventoTexto[formData.get('tipoEvento')] || formData.get('tipoEvento'),
-        cantidadJovenes: formData.get('cantidadJovenes'),
-        // Estadísticas de asistencia
+        // Datos de asistencia consolidados y específicos
         asistenciaGeneral: formData.get('asistenciaGeneral'),
-        reconciliadosTotal: formData.get('reconciliadosTotal'),
         asistenciaIcam: formData.get('asistenciaIcam'),
         reconciliadosIcam: formData.get('reconciliadosIcam'),
         asistenciaJuvic: formData.get('asistenciaJuvic'),
@@ -82,14 +76,12 @@ class EventFormManager {
     previewContent.innerHTML = `
       <div class="preview-section">
         <h4 style="color: #2c5aa0; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px;">Datos Principales</h4>
-        <p><strong>Zona:</strong> ${data.zona}</p>
+        <p><strong>Número de zona:</strong> ${data.zona}</p>
         <p><strong>Líder de Zona:</strong> ${data.liderZona}</p>
         <p><strong>Evento:</strong> ${data.tipoEvento}</p>
-        <p><strong>Total Jóvenes:</strong> ${data.cantidadJovenes}</p>
         
         <h4 style="color: #2c5aa0; margin-top: 20px; margin-bottom: 10px; border-bottom: 2px solid #eee; padding-bottom: 5px;">Estadísticas Generales</h4>
         <p><strong>Asistencia General:</strong> ${data.asistenciaGeneral}</p>
-        <p><strong>Total Reconciliados:</strong> ${data.reconciliadosTotal}</p>
         
         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
           <div style="background:#f0f7ff; padding: 10px; border-radius: 8px; border-left: 4px solid #2196f3;">
@@ -119,14 +111,12 @@ class EventFormManager {
     const btn = document.getElementById('confirmSubmit');
     const originalText = btn.innerHTML;
     
-    // Estado de carga
     btn.disabled = true;
     btn.innerHTML = '<span class="loading"></span> Enviando...';
 
     try {
       const data = this.procesarDatos();
       
-      // Enviamos los datos como parámetros de URL codificados
       await fetch(this.SCRIPT_URL, {
         method: 'POST',
         mode: 'no-cors',
@@ -136,7 +126,6 @@ class EventFormManager {
         body: new URLSearchParams({ 'data': JSON.stringify(data) })
       });
       
-      // Si llegamos aquí sin errores (no-cors no permite leer respuesta pero captura errores de red)
       this.cerrarModal('previewModal');
       this.successModal.style.display = 'block';
       
@@ -153,7 +142,6 @@ class EventFormManager {
   }
 }
 
-// Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', () => {
   new EventFormManager();
 });
