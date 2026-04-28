@@ -3,29 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vuelve a Casa - Registro 2025</title>
+  <title>Vuelve a Casa - Registro de Asistentes</title>
   <link rel="stylesheet" href="Estilos/globals.css">
   <link rel="stylesheet" href="Estilos/styles.css">
 </head>
 <body>
-  <div class="container fade-in">
+  <div class="container">
     <header class="header">
       <div class="header-content">
         <div class="event-title">Vuelve a Casa</div>
         <div class="subtitle">"Los brazos del Padre te esperan"</div>
         <div class="bible-verse">San Lucas 15:18</div>
         <h1>Registro de Asistentes</h1>
-        <p>Estadísticas y asistencia del evento</p>
+        <p>Completa la información del evento para el reporte consolidado</p>
       </div>
     </header>
 
     <form id="eventForm" class="form">
       <div class="form-section">
         <h2>Información del Culto</h2>
+        
         <div class="form-row">
           <div class="form-group">
             <label for="zona">Zona</label>
-            <input type="text" id="zona" name="zona" required placeholder="Ej: Zona Central">
+            <input type="text" id="zona" name="zona" required placeholder="Nombre de la zona">
           </div>
           <div class="form-group">
             <label for="liderZona">Líder de Zona</label>
@@ -35,67 +36,71 @@
 
         <div class="form-row">
           <div class="form-group">
-            <label for="totalSedes">Total Sedes</label>
+            <label for="totalSedes">¿Cuántas sedes tiene la zona?</label>
             <input type="number" id="totalSedes" name="totalSedes" min="1" required placeholder="Ej: 5">
           </div>
           <div class="form-group">
-            <label for="sedesParticipantes">Sedes Participantes</label>
+            <label for="sedesParticipantes">¿Cuántas sedes realizaron el servicio?</label>
             <input type="number" id="sedesParticipantes" name="sedesParticipantes" min="0" required placeholder="Ej: 3">
           </div>
         </div>
 
         <div class="form-group">
-          <label for="tipoEvento">Evento Realizado</label>
+          <label for="tipoEvento">¿En qué evento lo hicieron?</label>
           <select id="tipoEvento" name="tipoEvento" required>
             <option value="">Seleccione una opción</option>
             <option value="culto_normal">Culto Normal</option>
             <option value="confraternidad_zona">Confraternidad de Zona</option>
           </select>
         </div>
+
+        <div class="form-group">
+          <label for="cantidadJovenes">Total Jóvenes Asistentes</label>
+          <input type="number" id="cantidadJovenes" name="cantidadJovenes" min="0" required placeholder="Número total">
+          <small>Incluye todos los jóvenes presentes.</small>
+        </div>
       </div>
 
       <div class="form-section">
-        <h2>Estadísticas Generales</h2>
+        <h2>Estadísticas de Asistencia</h2>
+        
         <div class="form-row">
           <div class="form-group">
-            <label for="asistenciaGeneral">Asistencia Gral. (ICAM + JUVIC)</label>
-            <input type="number" id="asistenciaGeneral" name="asistenciaGeneral" required placeholder="Total">
+            <label for="asistenciaGeneral">Asistencia General (ICAM y JUVIC)</label>
+            <input type="number" id="asistenciaGeneral" name="asistenciaGeneral" required placeholder="Suma de ambos">
           </div>
           <div class="form-group">
-            <label for="reconciliadosTotal">Total Reconciliados</label>
-            <input type="number" id="reconciliadosTotal" name="reconciliadosTotal" required placeholder="Total">
+            <label for="reconciliadosTotal">Cantidad de Reconciliados</label>
+            <input type="number" id="reconciliadosTotal" name="reconciliadosTotal" required placeholder="Total reconciliados">
           </div>
         </div>
-      </div>
 
-      <div class="form-section">
-        <h2>Desglose por Ministerio</h2>
-        <div class="ministerio-box icam">
-            <h3>ICAM</h3>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Asistencia</label>
-                    <input type="number" name="asistenciaIcam" id="asistenciaIcam" required>
-                </div>
-                <div class="form-group">
-                    <label>Reconciliados</label>
-                    <input type="number" name="reconciliadosIcam" id="reconciliadosIcam" required>
-                </div>
+        <div class="joven-card" style="background: #f8faff;">
+          <h3>Desglose ICAM</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="asistenciaIcam">Asistencia ICAM</label>
+              <input type="number" id="asistenciaIcam" name="asistenciaIcam" required>
             </div>
+            <div class="form-group">
+              <label for="reconciliadosIcam">Reconciliados ICAM</label>
+              <input type="number" id="reconciliadosIcam" name="reconciliadosIcam" required>
+            </div>
+          </div>
         </div>
 
-        <div class="ministerio-box juvic">
-            <h3>JUVIC</h3>
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Asistencia</label>
-                    <input type="number" name="asistenciaJuvic" id="asistenciaJuvic" required>
-                </div>
-                <div class="form-group">
-                    <label>Reconciliados</label>
-                    <input type="number" name="reconciliadosJuvic" id="reconciliadosJuvic" required>
-                </div>
+        <div class="joven-card" style="background: #fffdf8;">
+          <h3>Desglose JUVIC</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="asistenciaJuvic">Asistencia JUVIC</label>
+              <input type="number" id="asistenciaJuvic" name="asistenciaJuvic" required>
             </div>
+            <div class="form-group">
+              <label for="reconciliadosJuvic">Reconciliados JUVIC</label>
+              <input type="number" id="reconciliadosJuvic" name="reconciliadosJuvic" required>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -106,9 +111,9 @@
     </form>
 
     <div id="previewModal" class="modal">
-      <div class="modal-content slide-down">
+      <div class="modal-content">
         <div class="modal-header">
-          <h3>Confirmar Información</h3>
+          <h3>Vista Previa del Registro</h3>
           <span class="close">&times;</span>
         </div>
         <div class="modal-body" id="previewContent"></div>
@@ -120,11 +125,16 @@
     </div>
 
     <div id="successModal" class="modal">
-      <div class="modal-content text-center">
-        <div class="success-icon">✓</div>
-        <h3>¡Registro Exitoso!</h3>
-        <p>Los datos han sido enviados a la hoja de cálculo.</p>
-        <button type="button" class="btn-primary" id="newForm">Hacer otro registro</button>
+      <div class="modal-content" style="text-align: center; padding: 50px;">
+        <div class="modal-header" style="justify-content: center; background: none; color: #2c5aa0;">
+          <h3 style="font-size: 2.5rem;">¡Registro Exitoso!</h3>
+        </div>
+        <div class="modal-body">
+          <p style="font-size: 1.2rem;">La información ha sido registrada correctamente en la nueva hoja 2025.</p>
+        </div>
+        <div class="modal-footer" style="justify-content: center; background: none;">
+          <button type="button" class="btn-primary" id="newForm">Nuevo Registro</button>
+        </div>
       </div>
     </div>
   </div>
